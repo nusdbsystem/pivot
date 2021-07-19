@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package com.collaborative.ml;
+import "common.proto";
+
+message PB_BatchIds {
+    repeated int32 batch_id = 1;
+}
+
+message PB_BatchSums {
+    repeated PB_EncodedNumber batch_sum = 1;
+}
+
+message PB_BatchLosses {
+    repeated PB_EncodedNumber batch_loss = 1;
+}

@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package com.collaborative.ml;
+import "common.proto";
+
+// deprecated
+message PB_EncryptedLabelVec {
+    repeated PB_EncodedNumber encrypted_label = 1;  // encrypted labels of a class
+}
+
+// deprecated
+message PB_PruneConditionResult {
+    int32 node_index = 1;          // tree node index
+    int32 pruning_satisfied = 2;   // 0: not satisfied; 1: satisfied, return leaf node
+    repeated PB_EncryptedLabelVec encrypted_label_vec = 3;   // if pruning_satisfied = 0, broadcast encrypted labels for find split
+    //PB_EncodedNumber impurity = 4;                           // if pruning_satisfied = 1, return a leaf node with encrypted impurity
+    PB_EncodedNumber label = 4;                              // if pruning_satisfied = 1, return a leaf node with plaintext label
+}
+
+message PB_PruneCheckResult {
+    int32 node_index = 1;
+    int32 is_satisfied = 2;
+    PB_EncodedNumber label = 3;
+}
+
+message PB_EncryptedLabelVector {
+    repeated PB_EncodedNumber label_indicator = 1;  // size should be classes_num * sample_num
+}
+
+message PB_EncryptedStatPerSplit {
+    repeated PB_EncodedNumber encrypted_stat = 1;  // encrypted stat for each branch of each class
+}
+
+message PB_EncryptedStatistics {
+    int32 client_id = 1;               // client id
+    int32 node_index = 2;              // node index
+    int32 local_split_num = 3;    // total split num on a client
+    int32 classes_num = 4;   // classes_num * 2 (if regression, classes_num = 2)
+    repeated PB_EncodedNumber left_sample_nums_of_splits = 5;  // sample_nums of left branch of total splits
+    repeated PB_EncodedNumber right_sample_nums_of_splits = 6;  // sample_nums of right branch of total splits
+    repeated PB_EncryptedStatPerSplit encrypted_stats_of_splits = 7; // two-dimensional encrypted statistics
+}
+
+message PB_UpdateInfo {
+    int32 source_client_id = 1;              // client who sends the message
+    int32 best_client_id = 2;                // client owns the best split in the current node, should be same as first parameter
+    int32 best_feature_id = 3;               // best feature id on the best_client_id
+    int32 best_split_id = 4;                 // best split id for the best_feature_id
+    PB_EncodedNumber left_branch_impurity  = 5;   // impurity of the left child node
+    PB_EncodedNumber right_branch_impurity= 6;  // impurity of the right child node
+    repeated PB_EncodedNumber left_branch_sample_ivs = 7;   // sample iv of the left child node
+    repeated PB_EncodedNumber right_branch_sample_ivs = 8;  // sample iv of the right child node
+}
+
+message PB_SplitInfo {
+    int32 global_split_num = 1;                // total split num of all clients
+    repeated int32 split_num_vec = 2;          // split_num of each client
+}

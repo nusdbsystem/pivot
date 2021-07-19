@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package com.collaborative.ml;
+
+message PB_EncodedNumber{
+    string n = 1;
+    string value = 2;
+    int32 exponent = 3;
+    int32 type = 4;
+}

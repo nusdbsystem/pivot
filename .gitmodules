@@ -1,0 +1,13 @@
+[submodule "third_party/libhcs"]
+	path = third_party/libhcs
+	url = git@github.com:lemonviv/libhcs.git
+	ignore = dirty
+[submodule "third_party/MP-SPDZ"]
+	path = third_party/MP-SPDZ
+	url = git@github.com:lemonviv/Pivot-SPDZ.git
+	ignore = dirty
+[submodule "third_party/libscapi"
+    path = third_party/libscapi
+    url = git@github.com:cryptobiu/libscapi.git
+    branch = b77816a8ad
+    ignore = dirty]
