@@ -25,7 +25,17 @@ homomorphic encryption (TPHE) and secure multiparty computation (MPC) techniques
 + Protobuf
     + We used protobuf version 3.14.0 for the messages communicated among clients. 
 
-## Executions
+## Run the test with Docker
+
+You can build the docker image using `tools/docker/Dockerfile` (test passed on Ubuntu20.04), or download
+the pre-built image from docker hub [here](https://hub.docker.com/repository/docker/lemonwyc/pivot).
+
+After building the image, follow the steps in `tools/docker/README.md` to run the test on a single machine.
+
+## Build from source
+
+If want to build from source, you can follow the steps in `tools/docker/Dockerfile`, but need to update 
+some configurations on your host machine.
 
 ### Configuration
  * In Pivot, update the following if needed:
@@ -110,7 +120,6 @@ homomorphic encryption (TPHE) and secure multiparty computation (MPC) techniques
         ```
     + the above `-pn` parameter is the port for `vfl_dt_enhanced_prediction` connections (if not specified, 
     default is 5000, as used for `vfl_decision_tree`)
-
 
 ### Citation
 

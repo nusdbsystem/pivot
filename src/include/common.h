@@ -57,6 +57,6 @@ enum TreeType {Classification, Regression};
 enum Algorithm{DecisionTreeAlg, RandomForestAlg, GBDTAlg};
 
 // ${Program_Home}/../Pivot-SPDZ/Player-Data/3-128-128/Params-Data
-#define DEFAULT_PARAM_DATA_FILE "../../third_party/Pivot-SPDZ/Player-Data/3-128-128/Params-Data"
+#define DEFAULT_PARAM_DATA_FILE "../third_party/Pivot-SPDZ/Player-Data/3-128-128/Params-Data"
 
 #endif //PIVOT_COMMON_H
